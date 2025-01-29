@@ -1,0 +1,36 @@
+<mat-expansion-panel class="align-horizontal">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            <span class="icon">
+                <span class="github-icon">
+                    <mat-icon aria-hidden="false" aria-label="Github" style="font-size: 22px; vertical-align: top;"
+                        class="fa-brands fa-github" />
+                    Github
+                </span>
+                <span class="green-check-icon">
+                    <mat-icon  *ngIf="isConnected" aria-hidden="false" aria-label="Github" style="font-size: large;
+                    vertical-align: text-top;
+                    margin-left: 5px;
+                    color: green;
+                " class="fas fa-check-circle" />
+                </span>
+            </span>
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="button-container c-align" *ngIf="!showSpinner && !isConnected">
+        <div class="button">
+            <button mat-raised-button (click)="onClickConnectBtn()">{{ 'Connect' }}</button>
+        </div>
+        <div class="button-description">
+            <h5 class="v-margin">Connect to Github</h5>
+        </div>
+    </div>
+    <div class="button-container r-align">
+        <div class="button">
+            <button mat-raised-button *ngIf="isConnected" (click)="onRemoveConnectBtn()">{{ 'Remove' }}</button>
+        </div>
+    </div>
+    <div class="button-container c-align" style="margin: auto 45%;" *ngIf="showSpinner">
+        <mat-spinner></mat-spinner>
+    </div>
+</mat-expansion-panel>

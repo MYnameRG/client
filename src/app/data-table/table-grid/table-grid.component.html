@@ -1,0 +1,36 @@
+<div class="content">
+    <div class="table-menu-bar">
+        <mat-toolbar>
+            <mat-form-field>
+                <mat-label>Active Integration</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let integration of integrations" [value]="integration.id"
+                        (click)="getEntities(integration.id)">
+                        {{ integration.value }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Entity</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let entity of entities" [value]="entity.id"
+                        (click)="getFields(selectedIntegrationId, entity.id)">
+                        {{ entity.value }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="example-form-field">
+                <mat-label>Search</mat-label>
+                <input matInput type="search" (change)="onSearchValue($event)" />
+            </mat-form-field>
+        </mat-toolbar>
+    </div>
+
+    <div class="table-grid" style="width: 100%; height: 15rem;">
+        <ag-grid-angular style="width: 100%; height: 100%;" [rowData]="rowData" [columnDefs]="colDefs"
+            [pagination]="true" [paginationPageSize]="paginationPageSize"
+            [paginationPageSizeSelector]="paginationPageSizeSelector" />
+    </div>
+</div>

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +7,18 @@ import { Component } from '@angular/core';
   standalone: false,
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
-  title = 'client';
+export class AppComponent implements OnInit {
+  isConnected: boolean = false;
+  checkUrl: string = '';
+
+  constructor(private router: Router) { }
+
+  ngOnInit(): void {
+    this.checkUrl = this.router.url;
+  }
+
+  onClickLogoutBtn() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
 }
